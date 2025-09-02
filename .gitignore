@@ -1,0 +1,16 @@
+# Archivos sensibles
+.env
+*.env
+
+# Maven
+/target/
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# SO
+Thumbs.db
+.DS_Store
