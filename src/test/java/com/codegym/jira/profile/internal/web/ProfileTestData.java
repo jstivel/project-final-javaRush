@@ -1,19 +1,24 @@
 package com.codegym.jira.profile.internal.web;
 
 import com.codegym.jira.MatcherFactory;
+import com.codegym.jira.login.internal.web.UserTestData;
 import com.codegym.jira.profile.ContactTo;
 import com.codegym.jira.profile.ProfileTo;
 import com.codegym.jira.profile.internal.model.Contact;
 import com.codegym.jira.profile.internal.model.Profile;
+import org.junit.jupiter.api.Test;
+import org.springframework.security.test.context.support.WithUserDetails;
 
 import java.util.Collections;
 import java.util.Set;
+
+
 
 public class ProfileTestData {
     public static MatcherFactory.Matcher<Profile> PROFILE_MATCHER =
             MatcherFactory.usingIgnoringFieldsComparator(Profile.class, "user");
 
-    public static ProfileTo USER_PROFILE_TO = new ProfileTo(null,
+    public static ProfileTo USER_PROFILE_TO = new ProfileTo(1L,
             Set.of("assigned", "overdue", "deadline"),
             Set.of(new ContactTo("skype", "userSkype"),
                     new ContactTo("mobile", "+01234567890"),
@@ -37,14 +42,13 @@ public class ProfileTestData {
     }
 
     public static ProfileTo getUpdatedTo() {
-        return new ProfileTo(null,
+        return new ProfileTo(1L,
                 Set.of("assigned", "three_days_before_deadline", "two_days_before_deadline", "one_day_before_deadline", "deadline", "overdue"),
                 Set.of(new ContactTo("skype", "newSkype"),
                         new ContactTo("mobile", "+380987654321"),
                         new ContactTo("website", "new.com"),
                         new ContactTo("github", "newGitHub"),
                         new ContactTo("tg", "newTg"),
-                        new ContactTo("facebook", "newFacebook"),
                         new ContactTo("linkedin", "newLinkedin")));
     }
 
@@ -57,7 +61,6 @@ public class ProfileTestData {
                 new Contact(id, "website", "new.com"),
                 new Contact(id, "github", "newGitHub"),
                 new Contact(id, "tg", "newTg"),
-                new Contact(id, "facebook", "newFacebook"),
                 new Contact(id, "linkedin", "newLinkedin")));
         return profile;
     }

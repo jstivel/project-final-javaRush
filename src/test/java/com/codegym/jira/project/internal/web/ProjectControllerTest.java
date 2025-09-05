@@ -7,8 +7,11 @@ import com.codegym.jira.bugtracking.project.ProjectRepository;
 import com.codegym.jira.common.BaseHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -17,6 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+@ActiveProfiles("test")
 public class ProjectControllerTest extends AbstractControllerTest {
     private static final String REST_URL_PROJECT = BaseHandler.REST_URL + "/projects";
     private static final String REST_URL_MNGR_PROJECT = BaseHandler.REST_URL + "/mngr/projects";

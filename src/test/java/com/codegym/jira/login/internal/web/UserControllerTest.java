@@ -30,6 +30,7 @@ class UserControllerTest extends AbstractControllerTest {
     private UserRepository repository;
 
     @Test
+
     @WithUserDetails(value = UserTestData.USER_MAIL)
     void get() throws Exception {
         perform(MockMvcRequestBuilders.get(REST_URL))

@@ -75,11 +75,13 @@ public class ReferenceControllerTest extends AbstractControllerTest {
     @Test
     @WithUserDetails(value = UserTestData.ADMIN_MAIL)
     void update() throws Exception {
+        System.out.println("TASKCODE: "+TASK_CODE);
         perform(MockMvcRequestBuilders.put(REST_URL + RefType.TASK + "/" + TASK_CODE)
                 .param("title", "Task1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNoContent());
+
         REFERENCE_MATCHER.assertMatch(getRef(), getUpdated());
     }
 
