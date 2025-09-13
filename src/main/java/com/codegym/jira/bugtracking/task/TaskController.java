@@ -156,4 +156,15 @@ public class TaskController {
             this(taskTo, new LinkedList<>());
         }
     }
+
+    public record TagRecord (long taskId, String tag) {
+
+    }
+
+    @PostMapping(value = "/tags", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<TagRecord> createTag(@Valid @RequestBody TagRecord tagRecord) {
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(taskService.tagCreate(tagRecord));
+    }
 }

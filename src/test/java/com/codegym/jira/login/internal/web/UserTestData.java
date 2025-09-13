@@ -31,7 +31,7 @@ public class UserTestData {
     public static final User manager = new User(MANAGER_ID, MANAGER_MAIL, "manager", "managerFirstName", "managerLastName", "managerDisplayName", Role.MANAGER);
 
     public static User getNew() {
-        return new User(null, "new@gmail.com", "newPassword", "newFirstName", "newLastName", "newDisplayName", Role.DEV);
+        return new User(null, "new" + System.currentTimeMillis() + "@gmail.com", "newPassword", "newFirstName", "newLastName", "newDisplayName", Role.DEV);
     }
 
     public static User getUpdated() {

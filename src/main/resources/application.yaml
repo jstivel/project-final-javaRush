@@ -8,20 +8,19 @@ app:
     max-pool-size: 100
 
 spring:
-  datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+  profiles:
+    active: prod
+
 
   jpa:
     show-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
   liquibase:
     enabled: true
-    changeLog: "classpath:db/changelog.sql"
+    changeLog: classpath:db/changelog.sql
 
   # Jackson Fields Serialization
   jackson:

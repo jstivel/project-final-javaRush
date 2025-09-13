@@ -82,7 +82,7 @@ public class TaskService {
             activityHandler.create(TaskUtil.makeActivity(id, taskTo));
         }
     }
-
+    @Transactional
     public TaskToFull get(long id) {
         Task task = Util.checkExist(id, handler.getRepository().findFullById(id));
         TaskToFull taskToFull = fullMapper.toTo(task);
@@ -136,5 +136,17 @@ public class TaskService {
         if (!userType.equals(possibleUserType)) {
             throw new DataConflictException(String.format(assign ? CANNOT_ASSIGN : CANNOT_UN_ASSIGN, userType, task.getStatusCode()));
         }
+    }
+
+    @Transactional
+    public TaskController.TagRecord tagCreate(TaskController.TagRecord tagRecord) {
+
+        Task task = handler.getRepository().getExisted(tagRecord.taskId());
+
+        task.getTags().add(tagRecord.tag());
+
+        handler.getRepository().save(task);
+        return tagRecord;
+
     }
 }
